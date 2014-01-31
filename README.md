@@ -1,5 +1,7 @@
 pynest -- a python interface for the Nest Thermostat
+
 by Scott M Baker, smbaker@gmail.com, http://www.smbaker.com/
+
 modified by Brendon Walsh, brendonwalsh@niamu.com, http://brendonwalsh.me
 
 ##Usage:
