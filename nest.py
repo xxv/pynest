@@ -20,6 +20,7 @@
 import time
 import urllib
 import urllib2
+import os
 import sys
 import re
 import getpass
@@ -89,7 +90,7 @@ class Nest:
     def restore_login(self):
         session = False
         try:
-            data = open('~/.config/nest/.session')
+            data = open(os.path.expanduser('~/.config/nest/.session'))
             res = json.load(data)
             data.close()
             session = True
@@ -141,7 +142,7 @@ class Nest:
 
         res = self.loads(res)
 
-        with open('~/.config/nest/.session', 'w') as outfile:
+        with open(os.path.expanduser('~/.config/nest/.session'), 'w') as outfile:
             json.dump(res, outfile)
 
         self.transport_url = res["urls"]["transport_url"]
@@ -184,15 +185,15 @@ class Nest:
         device = self.status["device"][self.serial]
         structure = self.status["structure"][self.structure_id]
 
-  # Delete the structure name so that we preserve the device name
-  del structure["name"]
+        # Delete the structure name so that we preserve the device name
+        del structure["name"]
         allvars = shared
 
         allvars.update(structure)
         allvars.update(device)
 
         for k, v in sorted(allvars.items()):
-           print k + "."*(32-len(k)) + ":", self.format_value(k, v)
+            print k + "."*(32-len(k)) + ":", self.format_value(k, v)
 
     def format_value(self, key, value):
         if 'temp' in key and isinstance(value, float) and self.units == 'F':
