@@ -1,4 +1,4 @@
-#! /usr/bin/python2
+#! /usr/bin/python
 
 # nest.py -- a python interface to the Nest Thermostat
 # by Scott M Baker, smbaker@gmail.com, http://www.smbaker.com/
