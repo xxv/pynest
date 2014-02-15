@@ -142,7 +142,10 @@ class Nest:
 
         res = self.loads(res)
 
-        with open(os.path.expanduser('~/.config/nest/.session'), 'w') as outfile:
+        cfgdir=os.path.expanduser('~/.config/nest')
+        if not os.path.isdir(cfgdir):
+	    os.makedirs(cfgdir)
+        with open(os.path.join(cfgdir, '.session'), 'w') as outfile:
             json.dump(res, outfile)
 
         self.transport_url = res["urls"]["transport_url"]
